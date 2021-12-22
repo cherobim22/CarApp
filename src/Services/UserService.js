@@ -1,13 +1,7 @@
 import api from "../Utils/Api";
 
 export async function getHotels() {
-    console.log("chamou a api");
     return await api.get('/api/hotel/');  
-}
-
-
-export async function getHotel(id) {
-    return await api.get(`/api/hotel/${id}`);
 }
 
 export async function createHotel(name, resume) {

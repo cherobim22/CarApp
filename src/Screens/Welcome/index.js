@@ -21,9 +21,7 @@ const Welcome = ({route, navigation}) => {
     }
 
     useEffect(() => {
-     
         const data = route.params
-     
         if(data.id){
             setName(data.name)
             setDescription(data.description)
@@ -47,7 +45,6 @@ const Welcome = ({route, navigation}) => {
         }, 2000)
     }
     const handleDeleteHotel = async () => {
-        console.log('delete hjotel')
         const res = await deleteHotel(hotel.id)
         setTimeout(() => {
             navigation.navigate('UserList', {reload:true})

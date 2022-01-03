@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
 import { Button } from 'react-native-paper';
-import { createHotel, deleteHotel, updateHotel } from '../../Services/UserService';
+import { createHotel, deleteHotel, updateHotel } from '../../Services/CarService';
 
 
 import styles from './styles';
@@ -10,7 +10,7 @@ const Welcome = ({route, navigation}) => {
 
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [hotel, setHotel] = useState([]);
+    const [car, setCar] = useState([]);
 
     const updateName = (value) => {
         setName(value);
@@ -25,7 +25,7 @@ const Welcome = ({route, navigation}) => {
         if(data.id){
             setName(data.name)
             setDescription(data.description)
-            setHotel(data)
+            setCar(data)
         }else{
             console.log('teste')
         }
@@ -38,16 +38,16 @@ const Welcome = ({route, navigation}) => {
         }, 2000)
     }
 
-    const handleUpdateHotel = async () => {
-        const res = await updateHotel(hotel.id, name, description)
+    const handleUpdateCar = async () => {
+        const res = await updateHotel(car.id, name, description)
         setTimeout(() => {
             navigation.navigate('UserList', {reload:true})
         }, 2000)
     }
-    const handleDeleteHotel = async () => {
-        const res = await deleteHotel(hotel.id)
+    const handleDeleteCar = async () => {
+        const res = await deleteHotel(car.id)
         setTimeout(() => {
-            navigation.navigate('UserList', {reload:true})
+            navigation.navigate('CarList', {reload:true})
         }, 2000)
     }
     return (
@@ -61,19 +61,19 @@ const Welcome = ({route, navigation}) => {
                 defaultValue={hotel?.name}/>
 
                 <Text>Descrição:</Text>
-                <TextInput   defaultValue={hotel?.description} style={styles.input} placeholder='televisão, ar condicionado, cafe da manha ....' onChangeText={ updateDescription }/>
+                <TextInput   defaultValue={hotel?.description} style={styles.input} placeholder='Turbo, 4x4, sedan .... .. ' onChangeText={ updateDescription }/>
 
                 {hotel.length == 0 ? 
                     <Button mode="contained" onPress={sendUser} style={styles.button} >
-                        Novo Hotel
+                        New Car
                     </Button>
                 :
                     <>
-                        <Button mode="contained" onPress={handleUpdateHotel} style={styles.button} >
-                            Update Hotel
+                        <Button mode="contained" onPress={handleUpdateCar} style={styles.button} >
+                            Update Car
                         </Button>
-                        <Button mode="contained" onPress={handleDeleteHotel} style={styles.button} >
-                         Delete Hotel
+                        <Button mode="contained" onPress={handleDeleteCar} style={styles.button} >
+                         Delete Car
                         </Button>
                     </>
                 }

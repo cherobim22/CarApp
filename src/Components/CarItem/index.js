@@ -10,11 +10,11 @@ const UserItem = ({data}) => {
     const navigation = useNavigation();
     return (
         <>
-            <TouchableHighlight onPress={() => navigation.navigate('Welcome', {id: data.id, name:data.name, description:data.hotelResume})}>
+            <TouchableHighlight onPress={() => navigation.navigate('Welcome', {id: data._id, name:data.name, description:data.description})}>
                 <List.Item
                     title={data.name}
-                    description={data.origin}
-                    left={props => <Text {...props} style={styles.id}>{data.id}</Text>}
+                    description={data.description}
+                    // left={props => <Text {...props} style={styles.id}></Text>}
                 />
             </TouchableHighlight>
         </>

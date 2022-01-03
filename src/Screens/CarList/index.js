@@ -1,37 +1,33 @@
-import { BUILDER_KEYS } from '@babel/types';
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
 
 import {
-  Alert,
   Button,
   FlatList,
-  Image,
-  ScrollView,
-  StyleSheet, Text, TextInput, View,
+  View,
 } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import UserItem from '../../Components/UserItem';
-import { getHotels } from '../../Services/UserService';
+import CarItem from '../../Components/CarItem';
+import { getCars } from '../../Services/CarService';
 
 import styles from './styles';
 
 const UserList = ({route}) => {
   const navigation = useNavigation();
-  const [users, setUsers] = useState([]);
+  const [cars, setCars] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      getHotels().then(response => {      
+      getCars().then(response => {      
           setIsLoading(false);
-          setUsers(response.data);
+          setCars(response.data);
       }).catch(console.error);
     });
 
-    getHotels().then(response => {      
+    getCars().then(response => {      
         setIsLoading(false);
-        setUsers(response.data);
+        setCars(response.data);
     }).catch(console.error);
   }, []) // SOMENTE NO PRIMEIRO RENDER
 
@@ -40,8 +36,8 @@ const UserList = ({route}) => {
       <View style={(isLoading) ? styles.isLoadingContainer : null}>
         <SafeAreaView>
           <FlatList
-            data={users}
-            renderItem={({ item }) => <UserItem data={item} />}
+            data={cars}
+            renderItem={({ item }) => <CarItem data={item} />}
           />
 
         </SafeAreaView>

@@ -1,2 +1,2 @@
-# HotelApp
-HotelApp React Native
+# CarApp
+CarApp React Native

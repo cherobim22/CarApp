@@ -1,32 +1,25 @@
 import api from "../Utils/Api";
 
 export async function getHotels() {
-    return await api.get('/api/hotel/');  
+    return await api.get('/carros/');  
 }
 
 export async function createHotel(name, resume) {
-    return await api.post(`/api/hotel/`, {
+    return await api.post(`/carros/`, {
         name: `${name}`,
-        hotelResume:  `${resume}`,
-        rate:"1",
-        amenities:"nothing",
-        address:"nothing"
+        description:  `${resume}`,
       });
 }
 
 export async function updateHotel(id, name, resume) {
-    return await api.put(`/api/hotel/${id}`, {
-        id:id,
+    return await api.put(`/carros/${id}`, {
         name: `${name}`,
-        hotelResume:  `${resume}`,
-        rate:"1",
-        amenities:"nothing",
-        address:"nothing"
+        description:  `${resume}`,
       });
 }
 
 export async function deleteHotel(id ) {
-    return await api.delete(`/api/hotel/${id}`);
+    return await api.delete(`/carros/${id}`);
 }
 
 

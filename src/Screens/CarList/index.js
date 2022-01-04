@@ -13,7 +13,7 @@ import { getCars } from '../../Services/CarService';
 
 import styles from './styles';
 
-const UserList = ({route}) => {
+const CarList = ({route}) => {
   const navigation = useNavigation();
   const [cars, setCars] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -56,4 +56,4 @@ const UserList = ({route}) => {
   );
 };
 
-export default UserList;
+export default CarList;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
 import { Button } from 'react-native-paper';
-import { createHotel, deleteHotel, updateHotel } from '../../Services/CarService';
+import { createCar, deleteCar, updateCar } from '../../Services/CarService';
 
 
 import styles from './styles';
@@ -32,20 +32,22 @@ const Welcome = ({route, navigation}) => {
     },[])
 
     const sendUser = async (e) => {
-        const resp = await createHotel(name, description)
+        const resp = await createCar(name, description)
         setTimeout(() => {
-            navigation.navigate('UserList', {reload:true})
+            navigation.navigate('CarList', {reload:true})
         }, 2000)
     }
 
     const handleUpdateCar = async () => {
-        const res = await updateHotel(car.id, name, description)
+        const res = await updateCar(car.id, name, description)
         setTimeout(() => {
-            navigation.navigate('UserList', {reload:true})
+            navigation.navigate('CarList', {reload:true})
         }, 2000)
     }
     const handleDeleteCar = async () => {
-        const res = await deleteHotel(car.id)
+        const res = await deleteCar(car.id)
+        console.log(car.id)
+        console.log(res)
         setTimeout(() => {
             navigation.navigate('CarList', {reload:true})
         }, 2000)
@@ -58,12 +60,12 @@ const Welcome = ({route, navigation}) => {
                 style={styles.input} 
                 placeholder='Digite um nome'
                 onChangeText={ updateName } 
-                defaultValue={hotel?.name}/>
+                defaultValue={car?.name}/>
 
                 <Text>Descrição:</Text>
-                <TextInput   defaultValue={hotel?.description} style={styles.input} placeholder='Turbo, 4x4, sedan .... .. ' onChangeText={ updateDescription }/>
+                <TextInput   defaultValue={car?.description} style={styles.input} placeholder='Turbo, 4x4, sedan .... .. ' onChangeText={ updateDescription }/>
 
-                {hotel.length == 0 ? 
+                {car.length == 0 ? 
                     <Button mode="contained" onPress={sendUser} style={styles.button} >
                         New Car
                     </Button>

@@ -1,24 +1,24 @@
 import api from "../Utils/Api";
 
-export async function getHotels() {
+export async function getCars() {
     return await api.get('/carros/');  
 }
 
-export async function createHotel(name, resume) {
+export async function createCar(name, resume) {
     return await api.post(`/carros/`, {
         name: `${name}`,
         description:  `${resume}`,
       });
 }
 
-export async function updateHotel(id, name, resume) {
+export async function updateCar(id, name, resume) {
     return await api.put(`/carros/${id}`, {
         name: `${name}`,
         description:  `${resume}`,
       });
 }
 
-export async function deleteHotel(id ) {
+export async function deleteCar(id) {
     return await api.delete(`/carros/${id}`);
 }
 
